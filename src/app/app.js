@@ -7,12 +7,16 @@ import PersonDetails from "../person-details";
 
 const App = () => {
     return (
-        <div>
+        <div className="container">
             <Header />
             <RandomPlanet />
-            <div>
-                <ItemsList />
-                <PersonDetails />
+            <div className="row mb2">
+                <div className="col-md-6">
+                    <ItemsList />
+                </div>
+                <div className="col-md-6">
+                    <PersonDetails />
+                </div>
             </div>
         </div>
     );
