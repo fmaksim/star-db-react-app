@@ -1,0 +1,93 @@
+@keyframes ldio-txmeznegr0p {
+  0% { transform: rotate(0) }
+  100% { transform: rotate(360deg) }
+}
+.ldio-txmeznegr0p div { box-sizing: border-box!important }
+.ldio-txmeznegr0p > div {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 30px;
+  left: 30px;
+  border-radius: 50%;
+  border: 4px solid #000;
+  border-color: #f80e1e transparent #f80e1e transparent;
+  animation: ldio-txmeznegr0p 1.9607843137254901s linear infinite;
+}
+
+.ldio-txmeznegr0p > div:nth-child(2), .ldio-txmeznegr0p > div:nth-child(4) {
+  width: 30px;
+  height: 30px;
+  top: 35px;
+  left: 35px;
+  animation: ldio-txmeznegr0p 1.9607843137254901s linear infinite reverse;
+}
+.ldio-txmeznegr0p > div:nth-child(2) {
+  border-color: transparent #1b13cd transparent #1b13cd
+}
+.ldio-txmeznegr0p > div:nth-child(3) { border-color: transparent }
+.ldio-txmeznegr0p > div:nth-child(3) div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: rotate(45deg);
+}
+.ldio-txmeznegr0p > div:nth-child(3) div:before, .ldio-txmeznegr0p > div:nth-child(3) div:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  top: -4px;
+  left: 14px;
+  background: #f80e1e;
+  border-radius: 50%;
+  box-shadow: 0 36px 0 0 #f80e1e;
+}
+.ldio-txmeznegr0p > div:nth-child(3) div:after {
+  left: -4px;
+  top: 14px;
+  box-shadow: 36px 0 0 0 #f80e1e;
+}
+
+.ldio-txmeznegr0p > div:nth-child(4) { border-color: transparent; }
+.ldio-txmeznegr0p > div:nth-child(4) div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: rotate(45deg);
+}
+.ldio-txmeznegr0p > div:nth-child(4) div:before, .ldio-txmeznegr0p > div:nth-child(4) div:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  top: -4px;
+  left: 9px;
+  background: #1b13cd;
+  border-radius: 50%;
+  box-shadow: 0 26px 0 0 #1b13cd;
+}
+.ldio-txmeznegr0p > div:nth-child(4) div:after {
+  left: -4px;
+  top: 9px;
+  box-shadow: 26px 0 0 0 #1b13cd;
+}
+.loadingio-spinner-double-ring-y1fmfwqjzv {
+  width: 78px;
+  height: 78px;
+  display: inline-block;
+  overflow: hidden;
+  background: none;
+  margin: auto;
+}
+.ldio-txmeznegr0p {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: translateZ(0) scale(0.78);
+  backface-visibility: hidden;
+  transform-origin: 0 0; /* see note above */
+}
+.ldio-txmeznegr0p div { box-sizing: content-box; }

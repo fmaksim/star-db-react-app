@@ -1,23 +1,25 @@
 import React, {Component} from "react";
 import "./random-planet.scss";
 import SwapiService from "../../services/swapi-service";
+import Loader from "../common/loader";
+import PlanetView from "./planet-view";
 
 class RandomPlanet extends Component {
     swapiService = new SwapiService();
     state = {
-        planet: {}
+        planet: {},
+        loaded: false
     };
-
-    constructor() {
-        super();
-    }
 
     componentDidMount() {
         this.updatePlanet();
     }
 
     onPlanetLoaded = (planet) => {
-        this.setState({planet});
+        this.setState({
+            planet,
+            loaded: true
+        });
     }
 
     updatePlanet = () => {
@@ -27,36 +29,16 @@ class RandomPlanet extends Component {
     }
 
     render() {
-        const { planet: {id, name, population,
-            diameter, rotationPeriod, climate} } = this.state;
+        const { planet, loaded } = this.state;
+        const loader = loaded ? null : <Loader />;
+        const content = loaded ? <PlanetView planet={planet} /> : null;
 
-        return <div className="random-planet jumbotron rounded">
-            <img
-                className="planet-img"
-                src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
-                alt=""/>
-            <div>
-                <h4>{name}</h4>
-                <ul className="list-group list-group-flush">
-                    <li className="list-group-item">
-                        <span className="term">Population</span>
-                        <span>{population}</span>
-                    </li>
-                    <li className="list-group-item">
-                        <span className="term">Rotation period</span>
-                        <span>{rotationPeriod}</span>
-                    </li>
-                    <li className="list-group-item">
-                        <span className="term">Diameter</span>
-                        <span>{diameter}</span>
-                    </li>
-                    <li className="list-group-item">
-                        <span className="term">Climate</span>
-                        <span>{climate}</span>
-                    </li>
-                </ul>
+        return (
+            <div className="random-planet jumbotron rounded">
+                {loader}
+                {content}
             </div>
-        </div>
+        );
     }
 };
 
