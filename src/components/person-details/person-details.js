@@ -1,32 +1,72 @@
-import React from "react";
+import React, {Component} from "react";
 import "./person-details.scss";
+import SwapiService from "../../services/swapi-service";
+import ErrorIndicator from "../common/error-indicator";
+import PersonView from "./person-view";
+import Loader from "../common/loader";
 
-const PersonDetails = () => {
-    return (
-        <div className="person-details card">
-            <img
-                className="person-img"
-                src="https://starwars-visualguide.com/assets/img/characters/3.jpg"
-                alt=""/>
-            <div className="card-body">
-                <h4>R2-D2</h4>
-                <ul className="list-group list-group-flush">
-                    <li className="list-group-item">
-                        <span className="term">Gender</span>
-                        <span>Male</span>
-                    </li>
-                    <li className="list-group-item">
-                        <span className="term">Birth Year</span>
-                        <span>78</span>
-                    </li>
-                    <li className="list-group-item">
-                        <span className="term">Eye Color</span>
-                        <span>blue</span>
-                    </li>
-                </ul>
+class PersonDetails extends Component {
+    swapiService = new SwapiService();
+
+    state = {
+        person: null,
+        loaded: false,
+        error: false
+    };
+
+    componentDidMount() {
+        this.updatePerson();
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.personId !== this.props.personId) {
+            this.updatePerson();
+        }
+    }
+
+    onError = () => {
+        this.setState({
+            error: true,
+            loaded: true
+        })
+    }
+
+    onPersonReady = (person) => {
+        this.setState({
+            person,
+            loaded: true
+        })
+    }
+
+    updatePerson = () => {
+        const {personId} = this.props;
+        if (!personId) {
+            return;
+        }
+
+        this.swapiService
+            .getPerson(personId)
+            .then(this.onPersonReady)
+            .catch(this.onError);
+    }
+
+    render() {
+        if (!this.state.person) return null;
+
+        const {error, loaded} = this.state;
+        const errorMessage = error ? <ErrorIndicator /> : null;
+        const loader = loaded ? null :<Loader />;
+        const hasData = loaded && !error;
+        const person = hasData ? <PersonView person={this.state.person} /> : null;
+
+        return (
+            <div className="person-details card">
+                {errorMessage}
+                {loader}
+                {person}
             </div>
-        </div>
-    );
-};
+        );
+    }
+}
 
 export default PersonDetails;
