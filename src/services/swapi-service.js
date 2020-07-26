@@ -7,7 +7,7 @@ export default class SwapiService {
     _apiBase = 'https://swapi.dev/api/';
 
     async getResource(resource) {
-        const res = await fetch(`${this._apiBase}${resource}`);
+        const res = await fetch(`${this._apiBase}${resource}/`);
 
         if (!res.ok) {
             throw new Error(`Could not fetch resource: ${resource}, 
@@ -18,19 +18,19 @@ export default class SwapiService {
     }
 
     async getPerson(id) {
-        const person = await this.getResource(`people/${id}/`);
+        const person = await this.getResource(`people/${id}`);
 
         return PersonTransformer.transform(person);
     }
 
     async getAllPersons() {
-        const res = await this.getResource(`peoples`);
+        const res = await this.getResource(`people`);
 
         return res.results.map(person => PersonTransformer.transform(person));
     }
 
     async getPlanet(id) {
-        const planet = await this.getResource(`planets/${id}/`);
+        const planet = await this.getResource(`planets/${id}`);
 
         return PlanetTransformer.transform(planet);
     }
@@ -42,7 +42,7 @@ export default class SwapiService {
     }
 
     async getStarship(id) {
-        const starship = await this.getResource(`starships/${id}/`);
+        const starship = await this.getResource(`starships/${id}`);
 
         return StarshipTransformer.transform(starship);
     }
