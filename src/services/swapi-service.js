@@ -5,6 +5,7 @@ import StarshipTransformer from "./data-transformers/starship-transformer";
 export default class SwapiService {
 
     _apiBase = 'https://swapi.dev/api/';
+    _imageBase = 'https://starwars-visualguide.com/assets/img';
 
     getResource = async(resource) => {
         const res = await fetch(`${this._apiBase}${resource}/`);
@@ -21,6 +22,10 @@ export default class SwapiService {
         const person = await this.getResource(`people/${id}`);
 
         return PersonTransformer.transform(person);
+    }
+
+    getPersonImage = (id) => {
+        return `${this._imageBase}/characters/${id}.jpg`
     }
 
     getAllPersons = async() => {
