@@ -2,8 +2,11 @@ import React, {Component} from "react";
 import ErrorBoundry from "../../common/error-boundry/error-boundry";
 import ItemsList from "../../items-list";
 import PersonDetails from "../../person-details";
+import SwapiService from "../../../services/swapi-service";
 
 export default class PersonPage extends Component {
+    swapiService = new SwapiService();
+
     state = {
         selectedPersonId: 5
     }
@@ -19,7 +22,9 @@ export default class PersonPage extends Component {
             <div className="row mb2">
                 <div className="col-md-6">
                     <ErrorBoundry>
-                        <ItemsList onSelectPerson={this.onSelectPerson} />
+                        <ItemsList
+                            getData={this.swapiService.getAllPersons}
+                            onSelectItem={this.onSelectPerson} />
                     </ErrorBoundry>
                 </div>
                 <div className="col-md-6">
